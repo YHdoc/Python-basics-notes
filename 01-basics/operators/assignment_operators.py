@@ -24,6 +24,8 @@ def basic_assignment():
     x %= 3   # x = x % 3
     print(f"x %= 3: {x}")
     
+    x=3.14
+
     x **= 2  # x = x ** 2
     print(f"x **= 2: {x}")
     
@@ -99,7 +101,8 @@ def multiple_assignment():
     print("\n=== 다중 할당 ===")
     
     # 여러 변수에 같은 값 할당
-    x = y = z = 0
+    x = y = z = 0 # Mutable 이냐 Immutable 이냐에 따라 이런 식의 값 할당은 위험할 수도/아닐 수도 있다. C# 에서 값형식이냐 참조형식이냐 그 차이랑 같음.
+    # 자세한 설명: 01-basics/variables-and-types/mutable_immutable.py 참고
     print(f"x = y = z = 0: x={x}, y={y}, z={z}")
     
     # 여러 변수에 다른 값 할당

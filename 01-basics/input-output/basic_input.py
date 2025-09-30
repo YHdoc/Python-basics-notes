@@ -36,7 +36,7 @@ def multiple_inputs():
     # 공백으로 구분된 값들
     values = input("이름과 나이를 입력하세요 (예: 김철수 25): ").split()
     if len(values) == 2:
-        name, age = values
+        name, age = values #언패킹 - ReadMe 참고
         age = int(age)
         print(f"이름: {name}, 나이: {age}세")
     

@@ -38,6 +38,75 @@ str_value = str(456)
 float_value = float("3.14")
 ```
 
+## 📦 Mutable vs Immutable
+
+> Python에서 객체의 변경 가능성을 이해하는 것은 매우 중요.
+
+### 핵심 개념
+- **Mutable**: 생성 후 내용을 변경할 수 있는 객체
+- **Immutable**: 생성 후 내용을 변경할 수 없는 객체
+
+### 타입별 분류
+
+| 타입 | Mutable/Immutable | 특징 | 예시 |
+|------|------------------|------|------|
+| `int`, `float`, `bool` | Immutable | 값 변경 시 새 객체 생성 | `x = 5; x = 6` |
+| `str` | Immutable | 문자열 수정 시 새 문자열 생성 | `s = "hello"; s += " world"` |
+| `tuple` | Immutable | 생성 후 수정 불가 | `t = (1, 2); t[0] = 3` (에러!) |
+| `list` | Mutable | 인덱스로 요소 수정 가능 | `lst = [1, 2]; lst[0] = 3` |
+| `dict` | Mutable | 키-값 쌍 추가/수정/삭제 가능 | `d = {}; d['key'] = 'value'` |
+| `set` | Mutable | 요소 추가/삭제 가능 | `s = {1, 2}; s.add(3)` |
+
+### 실험으로 이해하기
+
+```python
+# Immutable (int) - 새 객체 생성
+x = 5
+print(f"초기: x={x}, id={id(x)}")
+x = 6  # 새로운 객체 생성
+print(f"변경: x={x}, id={id(x)}")  # id가 다름!
+
+# Mutable (list) - 같은 객체 수정
+lst = [1, 2, 3]
+print(f"초기: lst={lst}, id={id(lst)}")
+lst[0] = 10  # 같은 객체 수정
+print(f"변경: lst={lst}, id={id(lst)}")  # id가 같음!
+```
+
+### 실무에서 주의사항
+
+#### 1. 함수 기본값으로 Mutable 객체 사용 금지
+```python
+# ❌ 위험한 예시
+def bad_function(items=[]):  # 기본값이 mutable!
+    items.append("new item")
+    return items
+
+# ✅ 안전한 예시
+def good_function(items=None):
+    if items is None:
+        items = []
+    items.append("new item")
+    return items
+```
+
+#### 2. 참조 vs 복사
+```python
+# Mutable 객체 참조
+list1 = [1, 2, 3]
+list2 = list1  # 같은 객체 참조
+list1.append(4)
+print(list2)  # [1, 2, 3, 4] - list2도 변경됨!
+
+# 복사가 필요한 경우
+list3 = list1.copy()  # 얕은 복사
+list4 = copy.deepcopy(list1)  # 깊은 복사
+```
+
+#### 3. 성능과 메모리 관점
+- **Immutable 장점**: 메모리 효율적, 스레드 안전, 해시 가능
+- **Mutable 장점**: in-place 수정, 유연한 데이터 구조
+
 ## 📁 예제 파일
 
 - `basic_variables.py` - 기본 변수 선언과 할당
@@ -45,6 +114,7 @@ float_value = float("3.14")
 - `type_conversion.py` - 타입 변환 예제
 - `variable_naming.py` - 변수 명명 규칙과 관례
 - `memory_efficiency.py` - 메모리 효율적인 변수 사용
+- `mutable_immutable.py` - Mutable vs Immutable 완전 정리
 
 ## 🏃‍♂️ 실습 과제
 

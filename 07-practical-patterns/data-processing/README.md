@@ -63,26 +63,20 @@ print(even_squares_set)  # {0, 4, 16, 36, 64}
 
 ### 4. 제너레이터 컴프리헨션(Generator Comprehension)
 
-리스트 컴프리헨션이랑 문법은 똑같은데 대괄호 [] 대신 소괄호 () 를 쓴다
-결과는 리스트처럼 메모리에 한 번에 올려놓고 쓰는 게 아니라 호출할 때마다 다음 요소를 하나씩 꺼내 쓰는 것이다.
+리스트 컴프리헨션이랑 문법은 똑같은데 대괄호 `[]` 대신 소괄호 `()` 를 쓴다.
+결과는 리스트처럼 메모리에 한 번에 올려놓고 쓰는 게 아니라 필요할 때 하나씩 꺼내 쓰는 것이다.
 
 ```python
-# 제너레이터 함수
-def fibonacci(n):
-    a, b = 0, 1
-    for _ in range(n):
-        yield a
-        a, b = b, a + b
-
-# 제너레이터 사용
-fib_gen = fibonacci(10)
-for num in fib_gen:
-    print(num, end=" ")  # 0 1 1 2 3 5 8 13 21 34
-
 # 제너레이터 표현식
 squares_gen = (x**2 for x in range(10))
-print(list(squares_gen))  # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+print(squares_gen)  # <generator object <genexpr> at 0x...>
+
+# 제너레이터 값 사용
+for square in squares_gen:
+    print(square, end=" ")  # 0 1 4 9 16 25 36 49 64 81
 ```
+
+> **자세한 설명**: [제너레이터](../../06-advanced/generators/) 챕터에서 제너레이터 함수, 메서드, 동작 원리 등을 학습하세요.
 
 ### 5. 람다 함수 (Lambda Function)
 

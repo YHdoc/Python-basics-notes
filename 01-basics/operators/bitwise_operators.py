@@ -38,7 +38,7 @@ def practical_bitwise():
     """실무에서 자주 사용되는 비트 연산"""
     print("\n=== 실무 예제 ===")
     
-    # 플래그 관리
+    # 플래그 관리 : 이런 식으로 한 개체에 여러 상태값이 있는 걸 나타낼 때 비트연산이 유용하다
     READ_PERMISSION = 1    # 0001
     WRITE_PERMISSION = 2   # 0010
     EXECUTE_PERMISSION = 4 # 0100

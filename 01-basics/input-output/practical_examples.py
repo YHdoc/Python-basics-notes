@@ -3,6 +3,14 @@
 def personal_info_program():
     """개인정보 입력 프로그램"""
     print("=== 개인정보 입력 프로그램 ===")
+
+    values = input("이름과 나이를 입력하세요 (예: 김철수 25): ").split()
+    if(len(values) == 2):
+        name, age = values
+        age = int(age)
+        print(f"이름 : {name} 나이 : {age}")
+        
+
     # TODO: 이름, 나이, 주소를 입력받아 출력하는 프로그램을 구현해보세요
     pass
 

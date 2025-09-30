@@ -72,11 +72,16 @@ def demonstrate_memory_optimization():
     print(f"큰 리스트 메모리: {sys.getsizeof(large_list)} bytes")
     
     # 제너레이터 사용 (메모리 효율적)
+    # 리스트는 1000개를 다 메모리에 올려두고 있기 때문에 메모리 사용량이 크다
+    # yield가 있는 함수는 '제너레이터 함수'로, 호출 시 실행되는 게 아니라 제너레이터 객체를 반환한다
+    # 제너레이터 객체를 가지고 있다가 필요할 때만 처리하므로 메모리 효율적이라는 것 
+    # 벽돌 1000개를 다 만들어서 들고 다니냐(list) VS 벽돌만드는 기계를 들고 다니냐(Generator) 의 차이임. 그래서 아래에서 gen이 가벼운 것
+    # 자세한 설명: 06-advanced/generators/README.md 참고
     def number_generator(n):
         for i in range(n):
-            yield i
+            yield i             
     
-    gen = number_generator(1000)
+    gen = number_generator(1000) # gen 안에는 “실행 준비 상태 + 내부 코드 위치(스택 프레임)”가 저장되어 있다
     print(f"제너레이터 메모리: {sys.getsizeof(gen)} bytes")
     
     # 불필요한 변수 제거

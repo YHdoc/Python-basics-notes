@@ -152,10 +152,116 @@ Python → 함수형 내장 함수 + 제너레이터/리스트 컴프리헨션 �
 | `GroupBy(key)`           | `itertools.groupby(iterable, key=...)` (정렬 필요) / `collections.defaultdict(list)` | `nums.GroupBy(x => x % 2)` → `groupby(nums, key=lambda x: x % 2)` |
 
 
-**pass**
+**5. pass**
 > “아무 일도 하지 않는다” 라는 뜻
 문법적으로 뭔가가 필요한데, 실제로 코드를 아직 안 쓰거나 비워두고 싶을 때 사용.
 즉, 자리 채움용(placeholder)
+
+
+**6. 언패킹(Unpacking)**
+> "포장된 것을 풀어서 각각의 변수에 나누어 담는 것"
+
+### 기본 개념
+```python
+# 상자(튜플) 안에 두 개의 물건이 들어있음
+box = ("사과", "바나나")
+
+# 상자를 열어서 각각 다른 그릇에 담기
+fruit1, fruit2 = box
+
+print(fruit1)  # 사과
+print(fruit2)  # 바나나
+```
+
+### 다양한 언패킹 예시
+
+#### 1. 기본 언패킹
+```python
+# 튜플 언패킹
+point = (10, 20)
+x, y = point
+print(f"x: {x}, y: {y}")  # x: 10, y: 20
+
+# 리스트 언패킹
+colors = ["빨강", "파랑", "노랑"]
+r, g, b = colors
+print(f"빨강: {r}, 파랑: {g}, 노랑: {b}")
+```
+
+#### 2. 함수에서 여러 값 반환
+```python
+def get_person_info():
+    return "이영희", 28, "서울"
+
+# 함수가 반환한 튜플을 언패킹
+name, age, city = get_person_info()
+print(f"이름: {name}, 나이: {age}, 도시: {city}")
+```
+
+#### 3. 반복문에서 언패킹
+```python
+# 딕셔너리 아이템 언패킹
+scores = {"수학": 90, "영어": 85, "과학": 95}
+
+for subject, score in scores.items():
+    print(f"{subject}: {score}점")
+
+# 리스트의 튜플들 언패킹
+students = [("김철수", 85), ("박민수", 92), ("최지영", 78)]
+
+for name, score in students:
+    print(f"{name}: {score}점")
+```
+
+#### 4. 고급 언패킹 (* 사용)
+```python
+numbers = [1, 2, 3, 4, 5]
+
+# 첫 번째는 first에, 나머지는 rest에
+first, *rest = numbers
+print(f"첫 번째: {first}")  # 첫 번째: 1
+print(f"나머지: {rest}")    # 나머지: [2, 3, 4, 5]
+
+# 중간 값들 수집
+first, *middle, last = numbers
+print(f"첫 번째: {first}")   # 첫 번째: 1
+print(f"중간: {middle}")     # 중간: [2, 3, 4]
+print(f"마지막: {last}")     # 마지막: 5
+```
+
+### 실무 활용 예시
+```python
+# 파일 경로 처리
+file_path = "/home/user/documents/report.txt"
+*directories, filename = file_path.split("/")
+print(f"파일명: {filename}")  # 파일명: report.txt
+
+# 좌표 계산
+def calculate_distance(point1, point2):
+    x1, y1 = point1  # 첫 번째 점 언패킹
+    x2, y2 = point2  # 두 번째 점 언패킹
+    return ((x2-x1)**2 + (y2-y1)**2)**0.5
+
+# 사용
+p1 = (0, 0)
+p2 = (3, 4)
+distance = calculate_distance(p1, p2)
+print(f"거리: {distance}")  # 거리: 5.0
+```
+
+### 주의사항
+```python
+# ❌ 에러: 개수가 맞지 않음
+values = [1, 2, 3]
+a, b = values  # ValueError: too many values to unpack
+
+# ✅ 올바른 방법
+a, b, c = values  # 개수 맞춤
+```
+
+
+
+
 
 ```python
 def calculator_program():
