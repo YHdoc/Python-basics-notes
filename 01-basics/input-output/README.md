@@ -60,6 +60,7 @@ print("%s님의 점수는 %.1f점입니다." % (name, score))
 ### 기타
 
 1. with 문법
+
 with 는 Context Manager(컨텍스트 관리자) 를 사용할 때 쓰는 문법.
 C# 의 using 문과 매우 유사하다.
 -둘 다 리소스 관리를 위한 것
@@ -73,12 +74,18 @@ Python: with open("sample.txt", "w") as file: ...
 
 장점: try-finally 없이도 안전하게 리소스를 정리할 수 있다.(with 문은 내부적으로 try-finally 를 자동으로 써주는 문법)
 
+
+
+
 2. open 문법
+
 open(...) 은 파일 객체를 반환하는데, 이 객체는 컨텍스트 관리자를 지원한다.
 
 따라서 with open(...) as file: 구문을 쓰면:
 파일을 열고(__enter__)
 블록이 끝나면 자동으로 file.close() 를 호출해준다.
+
+
 
 
 3. open 함수의 파라미터
@@ -99,7 +106,10 @@ encoding : 텍스트 인코딩 (예: "utf-8", "cp949")
 newline : 줄바꿈 처리 방식
 
 
+
+
 4. 파이썬의 빌트인 함수
+
 all(), len() 같이 import 없이 바로 쓸 수 있는 전역 함수들.
 
 Ex)
