@@ -59,7 +59,7 @@ print("%s님의 점수는 %.1f점입니다." % (name, score))
 
 ### 기타
 
-1. with 문법
+**1. with 문법**
 
 with 는 Context Manager(컨텍스트 관리자) 를 사용할 때 쓰는 문법.
 C# 의 using 문과 매우 유사하다.
@@ -77,7 +77,7 @@ Python: with open("sample.txt", "w") as file: ...
 
 
 
-2. open 문법
+**2. open 문법**
 
 open(...) 은 파일 객체를 반환하는데, 이 객체는 컨텍스트 관리자를 지원한다.
 
@@ -88,7 +88,7 @@ open(...) 은 파일 객체를 반환하는데, 이 객체는 컨텍스트 관�
 
 
 
-3. open 함수의 파라미터
+**3. open 함수의 파라미터**
 
 ```python
 open(file, mode="r", buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)
@@ -107,8 +107,7 @@ newline : 줄바꿈 처리 방식
 
 
 
-
-4. 파이썬의 빌트인 함수
+**4. 파이썬의 빌트인 함수**
 
 all(), len() 같이 import 없이 바로 쓸 수 있는 전역 함수들.
 
@@ -153,8 +152,15 @@ Python → 함수형 내장 함수 + 제너레이터/리스트 컴프리헨션 �
 | `GroupBy(key)`           | `itertools.groupby(iterable, key=...)` (정렬 필요) / `collections.defaultdict(list)` | `nums.GroupBy(x => x % 2)` → `groupby(nums, key=lambda x: x % 2)` |
 
 
+**pass**
+> “아무 일도 하지 않는다” 라는 뜻
+문법적으로 뭔가가 필요한데, 실제로 코드를 아직 안 쓰거나 비워두고 싶을 때 사용.
+즉, 자리 채움용(placeholder)
 
-
+```python
+def calculator_program():
+    pass  # 나중에 구현 예정
+```
 
 ## 📁 예제 파일
 
