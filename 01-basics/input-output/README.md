@@ -99,6 +99,52 @@ encoding : 텍스트 인코딩 (예: "utf-8", "cp949")
 newline : 줄바꿈 처리 방식
 
 
+4. 파이썬의 빌트인 함수
+all(), len() 같이 import 없이 바로 쓸 수 있는 전역 함수들.
+
+Ex)
+len() : 길이 반환
+all() : 모든 요소가 참이면 True
+any() : 하나라도 참이면 True
+sum(), min(), max(), sorted(), enumerate() … 등
+👉 builtins 모듈에 포함되어 있고, 기본적으로 항상 import 되어 있음.
+
+```python
+nums = [1, 2, 3, 0]
+print(len(nums))       # 4
+print(all(nums))       # False (0이 있어서)
+print(any(nums))       # True  (0이 아닌 게 있어서)
+print(sum(nums))       # 6
+print(sorted(nums))    # [0, 1, 2, 3]
+```
+
+
+C#의 LINQ 메서드 (Count(), All(), Any(), Sum(), OrderBy()) 와 느낌이 비슷함.
+* 차이
+C# LINQ → 메서드 체이닝 스타일 (nums.Where(...).Select(...).ToList())
+Python → 함수형 내장 함수 + 제너레이터/리스트 컴프리헨션 조합
+
+
+| C# LINQ 메서드              | Python 대응 방식                                                                     | 예제 (C# → Python)                                                  |
+| ------------------------ | -------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `Count()`                | `len(iterable)`                                                                  | `nums.Count()` → `len(nums)`                                      |
+| `Sum()`                  | `sum(iterable)`                                                                  | `nums.Sum()` → `sum(nums)`                                        |
+| `Min()`                  | `min(iterable)`                                                                  | `nums.Min()` → `min(nums)`                                        |
+| `Max()`                  | `max(iterable)`                                                                  | `nums.Max()` → `max(nums)`                                        |
+| `All(predicate)`         | `all(expr for x in iterable)`                                                    | `nums.All(x => x > 0)` → `all(x > 0 for x in nums)`               |
+| `Any(predicate)`         | `any(expr for x in iterable)`                                                    | `nums.Any(x => x > 5)` → `any(x > 5 for x in nums)`               |
+| `Where(predicate)`       | 리스트/제너레이터 컴프리헨션                                                                  | `nums.Where(x => x % 2 == 0)` → `[x for x in nums if x % 2 == 0]` |
+| `Select(selector)`       | 리스트/제너레이터 컴프리헨션, `map`                                                           | `nums.Select(x => x * x)` → `[x * x for x in nums]`               |
+| `OrderBy(key)`           | `sorted(iterable, key=...)`                                                      | `nums.OrderBy(x => x)` → `sorted(nums)`                           |
+| `OrderByDescending(key)` | `sorted(iterable, key=..., reverse=True)`                                        | `nums.OrderByDescending(x => x)` → `sorted(nums, reverse=True)`   |
+| `First()`                | `next(iter(iterable))`                                                           | `nums.First()` → `next(iter(nums))`                               |
+| `FirstOrDefault()`       | `next(iter(iterable), default)`                                                  | `nums.FirstOrDefault()` → `next(iter(nums), None)`                |
+| `Distinct()`             | `set(iterable)` (단, 순서 보장 X) / `dict.fromkeys(iterable)` (순서 보장)                 | `nums.Distinct()` → `list(set(nums))`                             |
+| `GroupBy(key)`           | `itertools.groupby(iterable, key=...)` (정렬 필요) / `collections.defaultdict(list)` | `nums.GroupBy(x => x % 2)` → `groupby(nums, key=lambda x: x % 2)` |
+
+
+
+
 
 ## 📁 예제 파일
 
