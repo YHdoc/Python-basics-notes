@@ -4,6 +4,28 @@ def calculator():
     """간단한 계산기"""
     print("=== 계산기 ===")
     # TODO: 사용자 입력을 받아 사칙연산을 수행하는 계산기를 구현해보세요
+    num1 = float(input("첫 번째 숫자: "))
+    operator = input("연산자 (+, -, *, /): ").strip();
+    num2 = float(input("두 번째 숫자 : "))
+    
+     # 연산 처리
+    if operator == '+':
+        result = num1 + num2
+    elif operator == '-':
+        result = num1 - num2
+    elif operator == '*':
+        result = num1 * num2
+    elif operator == '/':
+        # 0으로 나누기 예외 처리
+        if num2 == 0:
+            print("❌ 0으로 나눌 수 없습니다.")
+            return
+        result = num1 / num2
+    else:
+        print("❌ 지원하지 않는 연산자입니다.")
+        return
+
+    print(f"결과: {result}")
     pass
 
 def grade_calculator():
